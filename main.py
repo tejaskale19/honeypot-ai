@@ -9,9 +9,13 @@ from extractor import extract_intel
 
 app = FastAPI(title=settings.APP_NAME)
 
+
 # Create agent once
 agent = HoneypotAgent()
 
+@app.get("/")
+def root():
+    return {"status": "honeypot alive"}
 
 @app.get("/health")
 def health_check():
@@ -53,3 +57,4 @@ def honeypot_endpoint(
         confidence=detection["confidence"],
         intel=intel_data
     )
+
