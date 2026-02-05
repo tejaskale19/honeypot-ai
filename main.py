@@ -23,6 +23,7 @@ def health_check():
 
 
 @app.post("/honeypot", response_model=HoneypotResponse)
+@app.post("/honeypot/", response_model=HoneypotResponse)
 def honeypot_endpoint(
     request: HoneypotRequest,
     x_api_key: Optional[str] = Header(None)
@@ -57,4 +58,5 @@ def honeypot_endpoint(
         confidence=detection["confidence"],
         intel=intel_data
     )
+
 
